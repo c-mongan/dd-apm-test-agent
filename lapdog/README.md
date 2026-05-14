@@ -33,8 +33,8 @@ want to know what `lapdog start` actually does).
 - Python **3.11+** when installing via `pip` or from source. The Homebrew tap
   bundles its own interpreter, so the system Python version does not matter.
 - Port **8126** free on `localhost`. If the port is taken, set `PORT=<other>`
-  before running `lapdog start` and open the dashboard at
-  `http://localhost:<port>/leash/`.
+  before running `lapdog start` and override the port from the dashboard's
+  agent-status popover ("Collecting sessions" → port input).
 - For `lapdog claude` / `lapdog pi`: the `claude` / `pi` binary already on
   `PATH`.
 
@@ -95,7 +95,7 @@ docker run --rm \
 ```
 
 Then point your application at the host: `DD_TRACE_AGENT_URL=http://localhost:8126`.
-Open the dashboard at <http://localhost:8126/leash/>.
+Open the dashboard at <https://lapdog.datadoghq.com>.
 
 To persist sessions across container restarts, mount a host directory at
 `/snapshots`:
@@ -150,8 +150,10 @@ lapdog status
 lapdog stop
 ```
 
-Open <http://localhost:8126/leash/> while a session is running to see traces,
-sessions, costs, and permission friction in real time.
+Open <https://lapdog.datadoghq.com> while a session is running to see traces,
+sessions, costs, and permission friction in real time. The page reads directly
+from your local agent on `localhost:8126` — no Datadog account or login
+required.
 
 Useful flags:
 
